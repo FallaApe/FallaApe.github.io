@@ -1,0 +1,638 @@
+import { useState } from "react";
+import { GothicCursor } from "./components/GothicCursor";
+import { Home, User, Github, Mail, Briefcase } from "lucide-react";
+
+export default function App() {
+  const [currentPage, setCurrentPage] = useState("home");
+
+  return (
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      <GothicCursor />
+      
+      {/* Vintage background pattern */}
+      <div 
+        className="fixed inset-0 opacity-5 pointer-events-none"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23dc143c' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }}
+      />
+
+      {/* Main Container - Table Layout */}
+      <div className="relative z-10">
+        {/* Gothic Banner Header */}
+        <header className="border-b-4 border-crimson-900 bg-gradient-to-b from-black via-red-950/20 to-black relative overflow-hidden">
+          {/* Decorative corner ornaments */}
+          <div className="absolute top-0 left-0 w-32 h-32 opacity-30">
+            <svg viewBox="0 0 100 100" className="fill-crimson-700">
+              <path d="M0,0 L50,0 L0,50 Z" />
+            </svg>
+          </div>
+          <div className="absolute top-0 right-0 w-32 h-32 opacity-30">
+            <svg viewBox="0 0 100 100" className="fill-crimson-700">
+              <path d="M100,0 L50,0 L100,50 Z" />
+            </svg>
+          </div>
+
+          <div className="container mx-auto px-4 py-8 text-center relative">
+            {/* Flame GIFs (simulated) */}
+            <div className="flex justify-center gap-4 mb-4">
+              <div className="w-12 h-12 bg-gradient-to-t from-red-600 via-orange-500 to-yellow-400 animate-pulse" 
+                   style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)" }} />
+              <div className="w-12 h-12 bg-gradient-to-t from-red-600 via-orange-500 to-yellow-400 animate-pulse" 
+                   style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)", animationDelay: "0.2s" }} />
+            </div>
+
+            <h1 className="text-6xl mb-2 drop-shadow-[0_0_10px_rgba(220,20,60,0.8)]"
+                style={{ fontFamily: "'Cinzel', serif", textShadow: "3px 3px 0 #8b0000, 6px 6px 0 #000" }}>
+              ✠ SHIVAM SHARMA ✠
+            </h1>
+            <p className="text-xl text-crimson-400 mb-4" style={{ fontFamily: "'Cinzel', serif" }}>
+              ~* Cybersecurity & Python Enthusiast | UI/UX Learner *~
+            </p>
+
+            {/* Visitor counter (retro style) */}
+            <div className="inline-block bg-black border-2 border-crimson-700 px-4 py-2 mt-2">
+              <span className="text-crimson-500 text-sm" style={{ fontFamily: "monospace" }}>
+                👁️ VISITOR COUNT: 
+                <span className="ml-2 text-crimson-300 inline-flex">
+                  {[1,3,3,7].map((num, i) => (
+                    <span key={i} className="inline-block bg-crimson-950 border border-crimson-700 px-2 mx-0.5">
+                      {num}
+                    </span>
+                  ))}
+                </span>
+              </span>
+            </div>
+
+            {/* More flame GIFs */}
+            <div className="flex justify-center gap-4 mt-4">
+              <div className="w-12 h-12 bg-gradient-to-t from-red-600 via-orange-500 to-yellow-400 animate-pulse" 
+                   style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)", animationDelay: "0.4s" }} />
+              <div className="w-12 h-12 bg-gradient-to-t from-red-600 via-orange-500 to-yellow-400 animate-pulse" 
+                   style={{ clipPath: "polygon(50% 0%, 0% 100%, 100% 100%)", animationDelay: "0.6s" }} />
+            </div>
+          </div>
+
+          {/* Decorative border */}
+          <div className="h-2 bg-gradient-to-r from-transparent via-crimson-700 to-transparent" />
+        </header>
+
+        {/* Main Content Table Layout */}
+        <div className="container mx-auto px-4 py-8">
+          <table className="w-full border-separate" style={{ borderSpacing: "16px" }}>
+            <tbody>
+              <tr>
+                {/* Left Sidebar Navigation */}
+                <td className="w-64 align-top">
+                  <div className="bg-gradient-to-b from-red-950/40 to-black border-4 border-double border-crimson-800 p-4 sticky top-4">
+                    {/* Gothic ornament */}
+                    <div className="text-center mb-4 text-4xl text-crimson-600">
+                      ✠
+                    </div>
+
+                    <h2 className="text-center text-xl mb-4 text-crimson-400" 
+                        style={{ fontFamily: "'Cinzel', serif" }}>
+                      .:Navigation:.
+                    </h2>
+
+                    <nav className="space-y-2">
+                      {[
+                        { id: "home", label: "Home", icon: Home },
+                        { id: "about", label: "About Me", icon: User },
+                        { id: "projects", label: "Projects", icon: Briefcase },
+                        { id: "github", label: "GitHub", icon: Github },
+                        { id: "contact", label: "Contact", icon: Mail },
+                      ].map((item) => {
+                        const Icon = item.icon;
+                        return (
+                          <button
+                            key={item.id}
+                            onClick={() => setCurrentPage(item.id)}
+                            className={`w-full text-left px-4 py-3 border-2 transition-all relative overflow-hidden group ${
+                              currentPage === item.id
+                                ? "bg-crimson-900 border-crimson-600 shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]"
+                                : "bg-black border-crimson-800 shadow-[2px_2px_0_rgba(139,0,0,0.5)] hover:bg-red-950/30"
+                            }`}
+                            style={{
+                              fontFamily: "'Cinzel', serif",
+                              boxShadow: currentPage === item.id 
+                                ? "inset 0 2px 4px rgba(0,0,0,0.6)" 
+                                : "2px 2px 0 rgba(139,0,0,0.5), inset 0 -1px 1px rgba(255,255,255,0.1), inset 0 1px 1px rgba(0,0,0,0.5)"
+                            }}
+                          >
+                            <div className="relative z-10 flex items-center gap-2 text-crimson-300">
+                              <Icon className="w-4 h-4" />
+                              <span>{item.label}</span>
+                            </div>
+                            {/* Hover glitter effect */}
+                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-yellow-400 animate-ping" />
+                              <div className="absolute top-1/4 right-1/4 w-1 h-1 bg-yellow-400 animate-ping" style={{ animationDelay: "0.2s" }} />
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </nav>
+
+                    {/* Gothic decoration */}
+                    <div className="mt-8 text-center">
+                      <div className="text-crimson-700 text-2xl mb-2">🥀</div>
+                      <p className="text-xs text-crimson-600" style={{ fontFamily: "'Cinzel', serif" }}>
+                        Est. 2024
+                      </p>
+                    </div>
+
+                    {/* Glitter divider */}
+                    <div className="my-4 h-px bg-gradient-to-r from-transparent via-crimson-700 to-transparent" />
+
+                    {/* Badge/Award section */}
+                    <div className="text-center space-y-2">
+                      <img 
+                        src="data:image/svg+xml,%3Csvg width='88' height='31' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23000' width='88' height='31'/%3E%3Ctext x='44' y='20' fill='%23dc143c' text-anchor='middle' font-family='monospace' font-size='12'%3EBEST VIEWED%3C/text%3E%3C/svg%3E"
+                        alt="Best Viewed"
+                        className="mx-auto border-2 border-crimson-800"
+                      />
+                      <img 
+                        src="data:image/svg+xml,%3Csvg width='88' height='31' xmlns='http://www.w3.org/2000/svg'%3E%3Crect fill='%23000' width='88' height='31'/%3E%3Ctext x='44' y='20' fill='%23dc143c' text-anchor='middle' font-family='monospace' font-size='12'%3EHTML/CSS%3C/text%3E%3C/svg%3E"
+                        alt="HTML CSS"
+                        className="mx-auto border-2 border-crimson-800"
+                      />
+                    </div>
+                  </div>
+                </td>
+
+                {/* Main Content Area */}
+                <td className="align-top">
+                  <div className="bg-gradient-to-b from-red-950/20 to-black border-4 border-double border-crimson-800 p-8">
+                    {currentPage === "home" && <HomePage />}
+                    {currentPage === "about" && <AboutPage />}
+                    {currentPage === "projects" && <ProjectsPage />}
+                    {currentPage === "github" && <GitHubPage />}
+                    {currentPage === "contact" && <ContactPage />}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Footer */}
+        <footer className="border-t-4 border-double border-crimson-900 bg-gradient-to-t from-black via-red-950/20 to-black py-6">
+          <div className="container mx-auto px-4 text-center">
+            <div className="flex justify-center gap-2 mb-4">
+              <span className="text-crimson-600">✟</span>
+              <span className="text-crimson-600">☠</span>
+              <span className="text-crimson-600">✟</span>
+            </div>
+            <p className="text-crimson-500 text-sm" style={{ fontFamily: "'Cinzel', serif" }}>
+              © 2024 Shivam Sharma • Crafted with darkness & code
+            </p>
+            <p className="text-crimson-700 text-xs mt-2">
+              Best viewed in 1024x768 resolution 🦇
+            </p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  );
+}
+
+// Page Components
+function HomePage() {
+  return (
+    <div>
+      <h1 className="text-4xl mb-6 text-crimson-400 text-center" 
+          style={{ fontFamily: "'Cinzel', serif", textShadow: "2px 2px 0 #8b0000" }}>
+        ✠ Welcome to My Digital Sanctuary ✠
+      </h1>
+
+      {/* Hellsing Quote Banner */}
+      <div className="border-4 border-crimson-900 bg-gradient-to-r from-black via-red-950/30 to-black p-4 mb-6 text-center relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="text-9xl text-crimson-600 absolute -top-8 left-4">🦇</div>
+          <div className="text-9xl text-crimson-600 absolute -top-8 right-4">🦇</div>
+        </div>
+        <p className="text-crimson-300 italic text-lg relative z-10" style={{ fontFamily: "'Crimson Text', serif" }}>
+          "I am the bird of Hermes, eating my own wings to make me tame."
+        </p>
+        <p className="text-crimson-600 text-sm mt-2 relative z-10">— Hellsing</p>
+      </div>
+
+      <div className="border-4 border-crimson-900 bg-black p-6 mb-6">
+        <div className="space-y-4">
+          {/* Welcome text with better alignment */}
+          <div className="flex items-start gap-6">
+            <div className="flex-shrink-0">
+              <div className="text-6xl">🦇</div>
+              <div className="text-center text-crimson-700 text-xs mt-1">XIII</div>
+            </div>
+            <div className="flex-1">
+              <p className="text-crimson-300 mb-4 leading-relaxed">
+                <span className="text-crimson-500 text-2xl float-left mr-2 leading-none">G</span>
+                reetings, wanderer of the digital realm. You have entered the domain of a cybersecurity 
+                enthusiast, Python developer, and UI/UX learner. Like the immortal creatures of the night, 
+                I navigate the shadows of code, seeking vulnerabilities and crafting secure solutions.
+              </p>
+              <p className="text-crimson-400 italic border-l-4 border-crimson-800 pl-4">
+                "The essence of security lies not in the absence of threats, but in the mastery over them..."
+              </p>
+            </div>
+            <div className="flex-shrink-0">
+              <div className="text-6xl">⚰️</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scrolling text marquee */}
+      <div className="border-2 border-crimson-800 bg-black py-3 mb-6 overflow-hidden">
+        <div className="flex">
+          <div className="animate-marquee whitespace-nowrap">
+            <span className="text-crimson-500 mx-4">⚰️</span>
+            <span className="text-crimson-300">Currently on #100DaysOfCode Journey</span>
+            <span className="text-crimson-500 mx-4">🦇</span>
+            <span className="text-crimson-300">Building • Learning • Creating</span>
+            <span className="text-crimson-500 mx-4">✟</span>
+            <span className="text-crimson-300">Open to Collaborations</span>
+            <span className="text-crimson-500 mx-4">🩸</span>
+            <span className="text-crimson-300">Search and Destroy</span>
+            <span className="text-crimson-500 mx-4">⚰️</span>
+            <span className="text-crimson-300">Currently on #100DaysOfCode Journey</span>
+            <span className="text-crimson-500 mx-4">🦇</span>
+            <span className="text-crimson-300">Building • Learning • Creating</span>
+            <span className="text-crimson-500 mx-4">✟</span>
+            <span className="text-crimson-300">Open to Collaborations</span>
+            <span className="text-crimson-500 mx-4">🩸</span>
+            <span className="text-crimson-300">Search and Destroy</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Hellsing Organization Card */}
+      <div className="border-4 border-crimson-900 bg-gradient-to-br from-red-950/20 to-black p-6 mb-6 relative">
+        <div className="absolute top-4 right-4 opacity-20">
+          {/* Hellsing pentagram */}
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" stroke="#dc143c" strokeWidth="2" fill="none"/>
+            <path d="M50 10 L60 40 L90 40 L65 58 L75 88 L50 68 L25 88 L35 58 L10 40 L40 40 Z" 
+                  fill="none" stroke="#dc143c" strokeWidth="2"/>
+          </svg>
+        </div>
+        <h3 className="text-2xl text-crimson-400 mb-4 flex items-center gap-3" 
+            style={{ fontFamily: "'Cinzel', serif" }}>
+          <span className="text-3xl">🔱</span> 
+          <span>The Mission</span>
+        </h3>
+        <p className="text-crimson-300 leading-relaxed mb-3">
+          Much like the Royal Order of Protestant Knights, I stand as a guardian in the digital realm. 
+          My mission: to hunt down vulnerabilities, eliminate threats, and protect the innocent from 
+          the monsters that lurk in the shadows of cyberspace.
+        </p>
+        <div className="inline-block bg-crimson-950 border-2 border-crimson-700 px-4 py-2">
+          <span className="text-crimson-400" style={{ fontFamily: "'Cinzel', serif" }}>
+            ⚔️ Search and Destroy
+          </span>
+        </div>
+      </div>
+
+      {/* Quick stats with Hellsing theme */}
+      <div className="grid grid-cols-3 gap-4">
+        {[
+          { label: "Projects Completed", value: "15+", icon: "📁", symbol: "⚰️" },
+          { label: "Technologies Mastered", value: "20+", icon: "⚙️", symbol: "🗡️" },
+          { label: "Threats Eliminated", value: "∞", icon: "🛡️", symbol: "🦇" },
+        ].map((stat) => (
+          <div 
+            key={stat.label}
+            className="bg-gradient-to-b from-red-950/40 to-black border-2 border-crimson-800 p-4 text-center hover:border-crimson-600 transition-all group relative overflow-hidden"
+            style={{ boxShadow: "inset 0 2px 4px rgba(0,0,0,0.6), 2px 2px 0 rgba(139,0,0,0.5)" }}
+          >
+            <div className="absolute inset-0 bg-crimson-900 opacity-0 group-hover:opacity-10 transition-opacity" />
+            <div className="relative z-10">
+              <div className="flex justify-center items-center gap-2 text-3xl mb-2">
+                <span>{stat.icon}</span>
+                <span className="text-crimson-600">{stat.symbol}</span>
+              </div>
+              <div className="text-3xl text-crimson-400 mb-1" style={{ fontFamily: "'Cinzel', serif" }}>
+                {stat.value}
+              </div>
+              <div className="text-xs text-crimson-600" style={{ fontFamily: "'Cinzel', serif" }}>
+                {stat.label}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Blood seal decoration */}
+      <div className="mt-6 text-center">
+        <div className="inline-block border-4 border-crimson-900 bg-black p-4">
+          <svg width="60" height="60" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" stroke="#dc143c" strokeWidth="3" fill="none"/>
+            <circle cx="50" cy="50" r="30" stroke="#dc143c" strokeWidth="2" fill="none"/>
+            <path d="M50 20 L50 80 M20 50 L80 50" stroke="#dc143c" strokeWidth="2"/>
+            <circle cx="50" cy="50" r="8" fill="#dc143c"/>
+          </svg>
+          <p className="text-crimson-600 text-xs mt-2" style={{ fontFamily: "'Cinzel', serif" }}>
+            Blood Seal • Active
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AboutPage() {
+  return (
+    <div>
+      <h1 className="text-4xl mb-6 text-crimson-400 text-center" 
+          style={{ fontFamily: "'Cinzel', serif", textShadow: "2px 2px 0 #8b0000" }}>
+        ✠ About Me ✠
+      </h1>
+
+      {/* Hellsing-inspired quote */}
+      <div className="border-4 border-crimson-900 bg-black p-4 mb-6 text-center">
+        <p className="text-crimson-400 italic" style={{ fontFamily: "'Crimson Text', serif" }}>
+          "When a man is faced with his own death, he finds the impossible less of a barrier."
+        </p>
+        <p className="text-crimson-700 text-xs mt-2">— Sir Integra Hellsing</p>
+      </div>
+
+      <div className="space-y-6">
+        <div className="border-4 border-crimson-900 bg-gradient-to-br from-red-950/20 to-black p-6 relative">
+          {/* Alucard's seal */}
+          <div className="absolute top-2 right-2 opacity-10">
+            <svg width="60" height="60" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="45" stroke="#dc143c" strokeWidth="2" fill="none"/>
+              <text x="50" y="60" fill="#dc143c" fontSize="40" textAnchor="middle" fontFamily="serif">Ⅲ</text>
+            </svg>
+          </div>
+          <h3 className="text-xl text-crimson-400 mb-4 flex items-center gap-2" 
+              style={{ fontFamily: "'Cinzel', serif" }}>
+            <span>🗡️</span> The Journey
+          </h3>
+          <p className="text-crimson-300 leading-relaxed mb-3">
+            I am a passionate cybersecurity enthusiast and Python developer with a growing interest in UI/UX design. 
+            My journey in the digital realm began with curiosity about how systems work and evolved into a deep 
+            fascination with protecting them. Like a hunter of the night, I pursue knowledge relentlessly, 
+            mastering the arts of code and security.
+          </p>
+          <p className="text-crimson-400 text-sm italic">
+            Currently on my #100DaysOfCode journey, building projects that combine security, functionality, and aesthetic design.
+          </p>
+        </div>
+
+        <div className="border-4 border-crimson-900 bg-gradient-to-br from-red-950/20 to-black p-6">
+          <h3 className="text-xl text-crimson-400 mb-4 flex items-center gap-2" 
+              style={{ fontFamily: "'Cinzel', serif" }}>
+            <span>⚔️</span> Skills & Arsenal
+          </h3>
+          <p className="text-crimson-500 text-sm mb-4 italic">
+            "A true warrior never stops honing their weapons..."
+          </p>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { name: "Python", level: "⚔️⚔️⚔️" },
+              { name: "Cybersecurity", level: "🛡️🛡️🛡️" },
+              { name: "UI/UX Design", level: "🎨🎨" },
+              { name: "Web Development", level: "⚔️⚔️⚔️" },
+              { name: "Linux", level: "⚔️⚔️" },
+              { name: "Git & GitHub", level: "⚔️⚔️" },
+              { name: "Problem Solving", level: "🧠🧠🧠" },
+              { name: "Creative Coding", level: "✨✨✨" }
+            ].map((skill) => (
+              <div 
+                key={skill.name}
+                className="bg-black border-2 border-crimson-800 px-4 py-3 text-crimson-300 hover:border-crimson-600 transition-colors group"
+                style={{ boxShadow: "2px 2px 0 rgba(139,0,0,0.5)" }}
+              >
+                <div className="flex justify-between items-center">
+                  <span>{skill.name}</span>
+                  <span className="text-xs opacity-70 group-hover:opacity-100">{skill.level}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="border-4 border-crimson-900 bg-gradient-to-br from-red-950/20 to-black p-6 relative overflow-hidden">
+          {/* Blood seal background */}
+          <div className="absolute bottom-0 right-0 opacity-5">
+            <svg width="120" height="120" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="40" stroke="#dc143c" strokeWidth="3" fill="none"/>
+              <circle cx="50" cy="50" r="30" stroke="#dc143c" strokeWidth="2" fill="none"/>
+              <path d="M50 20 L50 80 M20 50 L80 50" stroke="#dc143c" strokeWidth="2"/>
+              <circle cx="50" cy="50" r="8" fill="#dc143c"/>
+            </svg>
+          </div>
+          <h3 className="text-xl text-crimson-400 mb-4 flex items-center gap-2" 
+              style={{ fontFamily: "'Cinzel', serif" }}>
+            <span>🌙</span> Philosophy
+          </h3>
+          <blockquote className="border-l-4 border-crimson-700 pl-4 space-y-3 relative z-10">
+            <p className="italic text-crimson-300">
+              "Code is poetry, security is art, and design is the canvas where they meet. 
+              Every line written is a brushstroke in the masterpiece of digital creation."
+            </p>
+            <p className="text-crimson-400 text-sm">
+              Like Alucard's unlimited power constrained only by his master's orders, 
+              technology's potential is boundless—but must be wielded with purpose and responsibility.
+            </p>
+          </blockquote>
+          
+          {/* Release restraint level */}
+          <div className="mt-6 pt-4 border-t-2 border-crimson-900">
+            <div className="text-center">
+              <p className="text-crimson-600 text-sm mb-2" style={{ fontFamily: "'Cinzel', serif" }}>
+                CURRENT SKILL LEVEL
+              </p>
+              <div className="flex justify-center gap-2 text-2xl">
+                <span className="text-crimson-500">⚔️</span>
+                <span className="text-crimson-500">⚔️</span>
+                <span className="text-crimson-500">⚔️</span>
+                <span className="text-crimson-700">⚔️</span>
+                <span className="text-crimson-800">⚔️</span>
+              </div>
+              <p className="text-crimson-700 text-xs mt-2 italic">
+                Restraint Level 3 • Evolving...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProjectsPage() {
+  const projects = [
+    { name: "Security Scanner", desc: "Network vulnerability assessment tool", tech: "Python" },
+    { name: "Portfolio Site", desc: "Gothic-themed personal website", tech: "React" },
+    { name: "Password Manager", desc: "Encrypted credential storage", tech: "Python" },
+    { name: "Dark UI Kit", desc: "Gothic component library", tech: "CSS" },
+  ];
+
+  return (
+    <div>
+      <h1 className="text-4xl mb-6 text-crimson-400 text-center" 
+          style={{ fontFamily: "'Cinzel', serif", textShadow: "2px 2px 0 #8b0000" }}>
+        ✠ Projects ✠
+      </h1>
+
+      <div className="grid gap-6">
+        {projects.map((project, index) => (
+          <div 
+            key={index}
+            className="border-4 border-crimson-900 bg-gradient-to-br from-red-950/20 to-black p-6 hover:border-crimson-700 transition-all group"
+          >
+            <div className="flex items-start justify-between">
+              <div>
+                <h3 className="text-xl text-crimson-400 mb-2 group-hover:text-crimson-300 transition-colors" 
+                    style={{ fontFamily: "'Cinzel', serif" }}>
+                  ⚡ {project.name}
+                </h3>
+                <p className="text-crimson-300 mb-3">{project.desc}</p>
+                <div className="inline-block bg-black border-2 border-crimson-800 px-3 py-1 text-sm text-crimson-500">
+                  {project.tech}
+                </div>
+              </div>
+              <div className="text-3xl opacity-50 group-hover:opacity-100 transition-opacity">
+                🗝️
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function GitHubPage() {
+  return (
+    <div>
+      <h1 className="text-4xl mb-6 text-crimson-400 text-center" 
+          style={{ fontFamily: "'Cinzel', serif", textShadow: "2px 2px 0 #8b0000" }}>
+        ✠ GitHub Stats ✠
+      </h1>
+
+      <div className="space-y-6">
+        <div className="border-4 border-crimson-900 bg-black p-6 text-center">
+          <Github className="w-16 h-16 text-crimson-600 mx-auto mb-4" />
+          <p className="text-crimson-300 mb-4">
+            Explore my open source contributions and coding journey
+          </p>
+          <a 
+            href="https://github.com/shivamsharma"
+            className="inline-block bg-crimson-900 border-2 border-crimson-600 px-6 py-3 text-crimson-200 hover:bg-crimson-800 transition-colors"
+            style={{ 
+              fontFamily: "'Cinzel', serif",
+              boxShadow: "2px 2px 0 rgba(139,0,0,0.5), inset 0 -1px 1px rgba(255,255,255,0.1)" 
+            }}
+          >
+            Visit GitHub Profile
+          </a>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          {[
+            { label: "Repositories", value: "25+" },
+            { label: "Contributions", value: "500+" },
+            { label: "Stars Earned", value: "50+" },
+            { label: "Followers", value: "100+" },
+          ].map((stat) => (
+            <div 
+              key={stat.label}
+              className="bg-gradient-to-br from-red-950/20 to-black border-2 border-crimson-800 p-4 text-center"
+              style={{ boxShadow: "inset 0 2px 4px rgba(0,0,0,0.6)" }}
+            >
+              <div className="text-3xl text-crimson-400 mb-2">{stat.value}</div>
+              <div className="text-sm text-crimson-600">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ContactPage() {
+  return (
+    <div>
+      <h1 className="text-4xl mb-6 text-crimson-400 text-center" 
+          style={{ fontFamily: "'Cinzel', serif", textShadow: "2px 2px 0 #8b0000" }}>
+        ✠ Contact Me ✠
+      </h1>
+
+      <div className="space-y-6">
+        <div className="border-4 border-crimson-900 bg-gradient-to-br from-red-950/20 to-black p-6">
+          <p className="text-crimson-300 text-center mb-6">
+            Feel free to reach out for collaborations, questions, or just to connect!
+          </p>
+
+          <div className="space-y-4">
+            <div className="bg-black border-2 border-crimson-800 p-4">
+              <label className="block text-crimson-400 mb-2" style={{ fontFamily: "'Cinzel', serif" }}>
+                Name:
+              </label>
+              <input 
+                type="text"
+                className="w-full bg-black border-2 border-crimson-800 px-3 py-2 text-crimson-300 focus:border-crimson-600 focus:outline-none"
+                style={{ boxShadow: "inset 0 2px 4px rgba(0,0,0,0.6)" }}
+              />
+            </div>
+
+            <div className="bg-black border-2 border-crimson-800 p-4">
+              <label className="block text-crimson-400 mb-2" style={{ fontFamily: "'Cinzel', serif" }}>
+                Email:
+              </label>
+              <input 
+                type="email"
+                className="w-full bg-black border-2 border-crimson-800 px-3 py-2 text-crimson-300 focus:border-crimson-600 focus:outline-none"
+                style={{ boxShadow: "inset 0 2px 4px rgba(0,0,0,0.6)" }}
+              />
+            </div>
+
+            <div className="bg-black border-2 border-crimson-800 p-4">
+              <label className="block text-crimson-400 mb-2" style={{ fontFamily: "'Cinzel', serif" }}>
+                Message:
+              </label>
+              <textarea 
+                rows={5}
+                className="w-full bg-black border-2 border-crimson-800 px-3 py-2 text-crimson-300 focus:border-crimson-600 focus:outline-none resize-none"
+                style={{ boxShadow: "inset 0 2px 4px rgba(0,0,0,0.6)" }}
+              />
+            </div>
+
+            <button 
+              className="w-full bg-crimson-900 border-2 border-crimson-600 px-6 py-3 text-crimson-200 hover:bg-crimson-800 transition-colors"
+              style={{ 
+                fontFamily: "'Cinzel', serif",
+                boxShadow: "2px 2px 0 rgba(139,0,0,0.5), inset 0 -1px 1px rgba(255,255,255,0.1)" 
+              }}
+            >
+              ⚡ Send Message ⚡
+            </button>
+          </div>
+        </div>
+
+        <div className="border-4 border-crimson-900 bg-black p-6">
+          <h3 className="text-xl text-crimson-400 mb-4 text-center" style={{ fontFamily: "'Cinzel', serif" }}>
+            Find Me On:
+          </h3>
+          <div className="flex justify-center gap-4">
+            {["GitHub", "Twitter", "LinkedIn"].map((social) => (
+              <a
+                key={social}
+                href="#"
+                className="bg-crimson-900 border-2 border-crimson-600 px-4 py-2 text-crimson-200 hover:bg-crimson-800 transition-colors"
+                style={{ boxShadow: "2px 2px 0 rgba(139,0,0,0.5)" }}
+              >
+                {social}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
